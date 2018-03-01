@@ -9,6 +9,10 @@ class Game
     @board = starting_board
   end
 
+  def claim(x,y)
+    @board[x][y] = current_player.name if @board[x][y].nil?
+  end
+
   def current_player
     @players.first
   end
