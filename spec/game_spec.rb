@@ -38,4 +38,20 @@ describe Game do
       expect(game.current_player).to eq player2
     end
   end
+
+  describe '#claim' do
+    context 'field is available' do
+      it 'should change specified field to current player name' do
+        game.claim(0,0)
+        expect(game.board[0][0]).to eq 'X'
+      end
+    end
+    context 'field is taken' do
+      it 'should change specified field to current player name' do
+        game.claim(0,0)
+        game.swap_players
+        expect{ game.claim(0,0) }.not_to change{ game.board[0][0] }
+      end
+    end
+  end
 end
